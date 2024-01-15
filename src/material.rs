@@ -6,8 +6,6 @@ use bevy::{
     render::render_resource::{AsBindGroup, ShaderDefVal, ShaderType}, asset::Asset,
 };
 
-use crate::SHADER_HANDLE;
-
 #[derive(Debug, Clone, Copy, ShaderType)]
 pub struct PointsShaderSettings {
     pub point_size: f32,
@@ -70,11 +68,11 @@ impl From<&PointsMaterial> for PointsMaterialKey {
 
 impl Material for PointsMaterial {
     fn vertex_shader() -> bevy::render::render_resource::ShaderRef {
-        bevy::render::render_resource::ShaderRef::Handle(SHADER_HANDLE.clone())
+        "embedded://bevy_points/shaders/points.wgsl".into()
     }
 
     fn fragment_shader() -> bevy::render::render_resource::ShaderRef {
-        bevy::render::render_resource::ShaderRef::Handle(SHADER_HANDLE.clone())
+        "embedded://bevy_points/shaders/points.wgsl".into()
     }
 
     fn alpha_mode(&self) -> bevy::prelude::AlphaMode {
